@@ -12,38 +12,16 @@ import { useGLTF } from "@react-three/drei";
 
 const Rocket = (props) => {
   
-  const group = useRef();
+  const rocketGroup = useRef();
   const { nodes, materials } = useGLTF('./models/rocket/rocket.gltf');
-  const [prevScrollPos, setPrevScrollPos] = useState(window.scrollY);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollPos = window.scrollY;
-      const scrollDirection = currentScrollPos > prevScrollPos ? 'down' : 'up';
-      setPrevScrollPos(currentScrollPos);
-
-      if (group.current) {
-        const x = group.current.position.x;
-        const y = group.current.position.y;
-        const z = group.current.position.z;
-        const increment = scrollDirection === 'down' ? 0.2 : -0.2;
-        group.current.position.set(x-increment, y + increment, z);
-      }
-
-    };
-
-    // Agrega un event listener para el evento scroll
-    window.addEventListener('scroll', handleScroll);
-
-    // Limpia el event listener al desmontar el componente
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [prevScrollPos]);
+    // rocket.current.position.set('0', '0', '-2');
+  }, []);
   
   return (
-    <group {...props} dispose={null}>
-      <group ref={group} scale={0.01}>
+    <group ref={rocketGroup} {...props}>
+      <group scale={0.01}>
         <group rotation={[-Math.PI / 2, 0, 0]} scale={100}>
           <mesh
             geometry={nodes.Cylinder_white_0.geometry}
