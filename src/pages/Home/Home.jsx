@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import './Home.css'
@@ -10,63 +10,109 @@ import Rocket from "../../components/Rocket";
 import ClientsMarquee from './components/ClientsMarquee';
 import ServicesCard from './components/ServicesCard';
 import HubSpotForm from './components/HubSpotForm';
+import PDFViewer from '../../components/PDFViewer';
+import BlurContainer from './components/BlurContainer';
+import Preloader from '../../components/Preloader/Preloader';
 
 const Home = () => {
 
+    // constantes para rocket
+    const [rocketRotation, setRocketRotation] = useState(0);
+    const rocketCanvasRef = useRef(null);
+    const [animacionVuelo, setAnimacionVuelo] = useState(-16);
+    const vueloIncremento = useRef(0.1); // Referencia para el incremento
+
+    // preloader state
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
+        // inicializando AOS
         AOS.init();
     }, []);
 
-    const [rotation, setRotation] = useState(0);
+    // funcion para detener el loading
+    const handleCanvasLoaded = () => {
+        setLoading(false);
+    };
 
     const animateRocket = () => {
-        setRotation((prevRotation) => prevRotation + 0.008); // Ajusta la velocidad de la animación según sea necesario
+        setRocketRotation((prevRotation) => prevRotation + 0.004); // Ajusta la velocidad de la animación según sea necesario
         requestAnimationFrame(animateRocket);
     };
 
     useEffect(() => {
         animateRocket();
-    }, []); // Se ejecuta una vez cuando el componente se monta    
+    }, []); // Se ejecuta una vez cuando el componente se monta
 
     return (
-        <div className="bg-white dark:bg-black">
+        <div className="bg-gray-50 dark:bg-zinc-950">
+
+            {/* Muestra el pre-loader si el cohete termino de renderizar */}
+            {loading && <Preloader />}
 
             <Navbar />
 
-            <div className="relative isolate px-6 pt-14 lg:px-8 z-10" >
-                <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-                    aria-hidden="true">
-                    <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff0000] to-[#F15F79] opacity-100 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-                        style={{
-                            clipPath:
-                                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-                        }}
-                    />
-                </div>
-                <div className="mx-auto max-w-2xl pb-24 pt-32 sm:pt-36 lg:pt-40" data-aos="fade-up">
-                    <svg aria-hidden="true" className="aa ak ed pn tu apo bfe"><defs><pattern x="50%" y="-1" id="0787a7c5-978c-4f66-83c7-11c213f99cb7" width="200" height="200" patternUnits="userSpaceOnUse"><path d="M.5 200V.5H200" fill="none"></path></pattern></defs><rect fill="url(#0787a7c5-978c-4f66-83c7-11c213f99cb7)" width="100%" height="100%" strokeWidth="0"></rect></svg>
-                    <div className="text-left">
-                        <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
-                            Transforma tu negocio con soluciones tecnologicas innovadoras
-                        </h1>
-                        <p className="mt-6 text-lg leading-8 text-gray-500 font-bold m-0 lg:mr-36">
-                            Somos tu aliado en la transformacion digital, ofreciendo soliciones tecnologicas
-                            que impulsen tu exito.
-                        </p>
-                        <div className="mt-10 flex items-center justify-center gap-x-6">
-                            <a
-                                href="#"
-                                className="rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                            >
-                                Explorar servicios
-                            </a>
-                            <a href="#" className="bg-gray-100 dark:bg-gray-800 rounded-md px-3.5 py-2.5 text-sm font-semibold text-black dark:text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                Contactar ahora <span aria-hidden="true">→</span>
-                            </a>
-                        </div>
+            {/* presentacion inicial */}
+            <BlurContainer>
+                {/* contenido */}
+                <div className="p-0 md:pl-20 max-w-2xl pb-24 pt-16 text-left ">
+                    <p className='text-gray-500 dark:text-gray-400 '>
+                        make with love by creativa warriors
+                    </p>
+                    <h1 className="pt-4 text-4xl font-bold tracking-tight text-black dark:text-white sm:text-6xl">
+                        Transforma tu negocio con soluciones tecnologicas innovadoras
+                    </h1>
+                    <div className="mt-10 flex items-center justify-left gap-x-4">
+                        <a
+                            href="#"
+                            className="rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                            Explorar servicios
+                        </a>
+                        <a href="#" className="bg-gray-100 dark:bg-gray-800 rounded-md px-3.5 py-2.5 text-sm font-semibold text-black dark:text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                            Contactar ahora <span aria-hidden="true">→</span>
+                        </a>
                     </div>
-                </div>
 
+                    {/* animacion de cohete */}
+                    <div ref={rocketCanvasRef} className="absolute inset-0 -z-10 ml-auto w-full h-screen sm:w-6/12 cursor-move opacity-70 sm:opacity-100 dark:brightness-50 dark:sm:brightness-100">
+                        <Canvas camera={{ position: [15, 4, 0], fov: 8 }} shadows onCreated={() => handleCanvasLoaded()}>
+                            <ambientLight intensity={0.1} />
+                            {/* <mesh>
+                                <boxBufferGeometry/>
+                                <meshNormalMaterial/>
+                            </mesh> */}
+                            <directionalLight
+                                position={[8, 8, 3]}
+                                castShadow
+                                shadow-mapSize-width={1024}
+                                shadow-mapSize-height={1024}
+                            />
+                            {/* Luz puntual */}
+                            <pointLight position={[5, 5, 5]} intensity={-0.05} />
+
+                            {/* Luz de foco */}
+                            <spotLight
+                                position={[15, 10, 5]}
+                                angle={0.3}
+                                penumbra={1}
+                                intensity={-0.2}
+                                castShadow
+                            />
+
+                            <group position={[0, -0.2, 0]} rotation={[0, rocketRotation, 0]}>
+                                <Rocket />
+                            </group>
+                            <OrbitControls enableZoom={false} enableRotate={false} />
+                        </Canvas>
+                    </div>
+
+                </div>
+            </BlurContainer>
+
+
+            {/* seccion de tarjetas de servicios */}
+            <div className="mx-auto w-full">
                 <div className="mx-auto w-9/12 py-24">
                     <div className="text-center" data-aos="fade-up" data-aos-duration="1500">
                         <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl mb-10">
@@ -103,6 +149,7 @@ const Home = () => {
                 </div>
             </div>
 
+            {/* seccion de clientes */}
             <div className="mx-auto w-full">
                 <div className="text-center" data-aos="fade-up">
                     <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl mb-10">
@@ -112,36 +159,53 @@ const Home = () => {
                 </div>
             </div>
 
-            
-            
-            <div className="bg-white dark:bg-zinc-900 text-white border dark:border-black p-4 rounded-lg shadow-lg sm:w-4/5	mx-auto mt-36" data-aos="fade-up">
-                    <div className="flex items-center">
-                        <div className="rounded-full bg-red-500 w-3 h-3 mr-2"></div>
-                        <div className="rounded-full bg-yellow-500 w-3 h-3 mr-2"></div>
-                        <div className="rounded-full bg-green-500 w-3 h-3 mr-2"></div>
-                    </div>
-                    <div className="mt-6 rounded">
-                    <HubSpotForm/>
+
+            {/* portafolio */}
+            <div className="mx-auto w-full mt-36 ">
+                <div className="text-center">
+                    <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl mb-10" data-aos="fade-up">
+                        Conoce mas sobre nosotros
+                    </h1>
+                    <div className='mx-auto w-4/5 my-12 shadow-lg rounded bg-white dark:bg-zinc-900 text-white border dark:border-black' data-aos="zoom-in">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-center">
+                            <div className="relative grid h-full w-full items-end justify-center overflow-hidden text-center bg-white rounded">
+                                {/* Fondo de la Tarjeta */}
+                                <div className="absolute inset-0 m-0 h-full w-full rounded-none bg-cover bg-center" style={{ backgroundImage: "url('https://worldcampus.saintleo.edu/img/article/estudiar-desarrollo-de-software-lenguajes-de-programacion-mas-dificiles-de-aprender.webp')" }}>
+                                    <div className="absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/60" />
+                                </div>
+
+                                {/* Contenido de la Tarjeta */}
+                                <div className="relative py-14 px-6 md:px-12">
+                                    <h2 className="text-white mb-6 text-3xl font-medium leading-[1.5]">
+                                        Hechale un vistazo a nuestro portafolio
+                                    </h2>
+                                </div>
+                            </div>
+                            <div className='col-span-2 h-[600px] w-[98%] content-center'>
+                                <PDFViewer />
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
 
 
+
+
+            {/* formulario hubspot */}
+            <div className="bg-white dark:bg-zinc-900 text-white border dark:border-black p-4 rounded-lg shadow-lg sm:w-4/5	mx-auto my-24" data-aos="fade-up">
+                <div className="flex items-center">
+                    <div className="rounded-full bg-red-500 w-3 h-3 mr-2"></div>
+                    <div className="rounded-full bg-yellow-500 w-3 h-3 mr-2"></div>
+                    <div className="rounded-full bg-green-500 w-3 h-3 mr-2"></div>
+                </div>
+                <div className="mt-6 rounded">
+                    <HubSpotForm />
+                </div>
+            </div>
+
+            {/* Footer */}
             <Footer />
-
-            {/* animacion de cohete */}
-            <Canvas camera={{ position: [15, 4, 0], fov: 9 }} shadows className="absolute top-0 left-0 m-0 p-0 ">
-                {/* <ambientLight/> */}
-                <directionalLight
-                    position={[5, 5, 3]}
-                    castShadow
-                    shadow-mapSize-width={1024}
-                    shadow-mapSize-height={1024}
-                />
-                <group position={[1, 0, -1.6]} rotation={[0, rotation, 0]}>
-                    <Rocket />
-                </group>
-                <OrbitControls enableZoom={false} />
-            </Canvas>
 
         </div >
     );

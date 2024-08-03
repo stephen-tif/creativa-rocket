@@ -12,15 +12,10 @@ import { useGLTF } from "@react-three/drei";
 
 const Rocket = (props) => {
   
-  const rocketGroup = useRef();
   const { nodes, materials } = useGLTF('./models/rocket/rocket.gltf');
-
-  useEffect(() => {
-    // rocket.current.position.set('0', '0', '-2');
-  }, []);
   
   return (
-    <group ref={rocketGroup} {...props}>
+    <group {...props}>
       <group scale={0.01}>
         <group rotation={[-Math.PI / 2, 0, 0]} scale={100}>
           <mesh

@@ -85,49 +85,24 @@ function Navbar() {
     const renderDropdown = (item) => (
         <Menu as="div" className="relative inline-block text-left" key={item.name}>
             <div>
-                <MenuButton className="text-sm font-semibold leading-6 text-gray-900 dark:text-white border-b-2 border-transparent hover:border-red-500">
-                    {item.name}
+                <MenuButton className="font-semibold leading-2 text-gray-900 dark:text-white border-b-4 border-transparent hover:border-red-500 hover:font-bold rounded ease-in duration-200">
+                    {item.name} v
                 </MenuButton>
             </div>
             <MenuItems className="absolute right-0 mt-2 w-56 origin-top-right bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-600 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 {item.options.map((option) => (
                     <div key={option.name}>
-                        {option.suboptions ? (
-                            <Menu as="div" className="relative">
-                                <div>
-                                    <MenuButton className="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                        {option.name}
-                                    </MenuButton>
-                                </div>
-                                <MenuItems className="absolute left-full top-0 mt-0 w-56 origin-top-left bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-600 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                    {option.suboptions.map((suboption) => (
-                                        <MenuItem key={suboption.name}>
-                                            {({ active }) => (
-                                                <a
-                                                    href={suboption.href}
-                                                    className={`${active ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-200'
-                                                        } group flex items-center px-4 py-2 text-sm`}
-                                                >
-                                                    {suboption.name}
-                                                </a>
-                                            )}
-                                        </MenuItem>
-                                    ))}
-                                </MenuItems>
-                            </Menu>
-                        ) : (
-                            <MenuItem>
-                                {({ active }) => (
-                                    <a
-                                        href={option.href}
-                                        className={`${active ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-200'
-                                            } group flex items-center px-4 py-2 text-sm`}
-                                    >
-                                        {option.name}
-                                    </a>
-                                )}
-                            </MenuItem>
-                        )}
+                        <MenuItem>
+                            {({ active }) => (
+                                <a
+                                    href={option.href}
+                                    className={`${active ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-200'
+                                        } group flex items-center px-4 py-2 text-lg`}
+                                >
+                                    {option.name}
+                                </a>
+                            )}
+                        </MenuItem>
                     </div>
                 ))}
             </MenuItems>
@@ -159,7 +134,7 @@ function Navbar() {
                 <div className="hidden lg:flex lg:gap-x-12">
                     {navigation.map((item) => (
                         item.dropdown ? renderDropdown(item) : (
-                            <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900 dark:text-white border-b-2 border-transparent hover:border-red-500">
+                            <a key={item.name} href={item.href} className="font-semibold leading-2 text-gray-900 dark:text-white border-b-4 border-transparent hover:border-red-500 hover:font-bold rounded ease-in duration-200">
                                 {item.name}
                             </a>
                         )
@@ -222,7 +197,7 @@ function Navbar() {
                                                             {option.suboptions ? (
                                                                 <Menu as="div" className="relative">
                                                                     <div>
-                                                                        <MenuButton className="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                                        <MenuButton className="w-full text-left px-4 py-2 text-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
                                                                             {option.name}
                                                                         </MenuButton>
                                                                     </div>
@@ -233,7 +208,7 @@ function Navbar() {
                                                                                     <a
                                                                                         href={suboption.href}
                                                                                         className={`${active ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-200'
-                                                                                            } group flex items-center px-4 py-2 text-sm`}
+                                                                                            } group flex items-center px-4 py-2 text-lg`}
                                                                                     >
                                                                                         {suboption.name}
                                                                                     </a>
@@ -248,7 +223,7 @@ function Navbar() {
                                                                         <a
                                                                             href={option.href}
                                                                             className={`${active ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-200'
-                                                                                } group flex items-center px-4 py-2 text-sm`}
+                                                                                } group flex items-center px-4 py-2 text-lg`}
                                                                         >
                                                                             {option.name}
                                                                         </a>
