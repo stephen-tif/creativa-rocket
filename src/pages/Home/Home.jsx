@@ -75,7 +75,7 @@ const Home = () => {
                     </div>
 
                     {/* animacion de cohete */}
-                    <div ref={rocketCanvasRef} className="absolute inset-0 -z-10 ml-auto w-full h-screen sm:w-6/12 cursor-move opacity-70 sm:opacity-100 dark:brightness-50 dark:sm:brightness-100">
+                    <div ref={rocketCanvasRef} className="absolute inset-0 -z-10 ml-auto w-full h-screen sm:w-6/12 cursor-move opacity-75 sm:opacity-100 dark:brightness-50 dark:sm:brightness-100">
                         <Canvas camera={{ position: [15, 4, 0], fov: 8 }} shadows onCreated={() => handleCanvasLoaded()}>
                             <ambientLight intensity={0.1} />
                             {/* <mesh>
@@ -149,8 +149,9 @@ const Home = () => {
                 </div>
             </div>
 
+
             {/* seccion de clientes */}
-            <div className="mx-auto w-full">
+            <div className="mx-auto w-full my-6">
                 <div className="text-center" data-aos="fade-up">
                     <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl mb-10">
                         Nuestros Clientes
@@ -159,48 +160,98 @@ const Home = () => {
                 </div>
             </div>
 
+            {/* seccion universidad */}
+            <div className="mx-auto w-full mt-48">
+                <div className="text-white dark:border-black border rounded-lg shadow-lg w-4/5 mx-auto my-12 px-4 bg-[url('./src/assets/tarjeta-blanco.svg')] dark:bg-[url('./src/assets/tarjeta-negro.svg')] bg-cover bg-center" data-aos="fade-up">
+                    <div className='w-full content-center'>
 
-            {/* portafolio */}
-            <div className="mx-auto w-full mt-36 ">
-                <div className="text-center">
-                    <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl mb-10" data-aos="fade-up">
-                        Conoce mas sobre nosotros
-                    </h1>
-                    <div className='mx-auto w-4/5 my-12 shadow-lg rounded bg-white dark:bg-zinc-900 text-white border dark:border-black' data-aos="zoom-in">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-center">
-                            <div className="relative grid h-full w-full items-end justify-center overflow-hidden text-center bg-white rounded">
-                                {/* Fondo de la Tarjeta */}
-                                <div className="absolute inset-0 m-0 h-full w-full rounded-none bg-cover bg-center" style={{ backgroundImage: "url('https://worldcampus.saintleo.edu/img/article/estudiar-desarrollo-de-software-lenguajes-de-programacion-mas-dificiles-de-aprender.webp')" }}>
-                                    <div className="absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/60" />
-                                </div>
-
-                                {/* Contenido de la Tarjeta */}
-                                <div className="relative py-14 px-6 md:px-12">
-                                    <h2 className="text-white mb-6 text-3xl font-medium leading-[1.5]">
-                                        Hechale un vistazo a nuestro portafolio
-                                    </h2>
-                                </div>
+                        <div class="flex flex-col md:flex-row justify-between items-center p-6">
+                        <div className='w-6/12 mx-auto'>
+                                <img src="https://static.vecteezy.com/system/resources/previews/024/830/905/original/3d-illustration-icon-of-blue-education-college-graduation-hat-with-book-png.png" alt="" />
                             </div>
-                            <div className='col-span-2 h-[600px] w-[98%] content-center'>
-                                <PDFViewer />
+                            <div className='w-full md:w-6/12 mx-auto text-center md:text-left'>
+                                <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
+                                    Explora nuestra universidad!
+                                </h1>
+                                <p className='text-gray-500 dark:text-gray-400 my-6'>
+                                    Descubre como nuestra universidad impulsa el crecimiento
+                                    profesional con cursos y certificaciones especializadas en tecnologia.
+                                </p>
+                                <br />
+                                <a href="#" className="rounded-2xl bg-red-600 px-3.5 py-2.5 font-semibold text-white shadow-sm hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                    Explorar la universidad
+                                </a>
+                                <br />
+                                <br />
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
 
 
+            {/* seccion universidad */}
+            <div className="mx-auto w-full mt-48">
+                <div className="text-white border dark:border-black rounded-lg shadow-lg w-4/5 mx-auto my-12 px-4 bg-[url('./src/assets/tarjeta-blanco.svg')] dark:bg-[url('./src/assets/tarjeta-negro.svg')] bg-cover bg-center" data-aos="fade-up">
+                    <div className='w-full content-center'>
+
+                        <div class="flex flex-col md:flex-row justify-between items-center p-6">
+                            <div className='w-full md:w-6/12 mx-auto text-center md:text-left'>
+                                <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
+                                    Conoce mas sobre nosotros!
+                                </h1>
+                                <p className='text-gray-500 dark:text-gray-400 my-6'>
+                                    Somos una empresa de Centro y Norte América fundada en el año 2003, 
+                                    dedicada a la prestación de servicios de consultoría en las diferentes Tecnologías 
+                                    de Información. Somos partners de ORACLE (gold partners), MicroStrategy, Microsoft, HASTQB. 
+                                    Contamos con más de 200 colaboradores certificados y capacitados en tecnologías como 
+                                    SALESFORCE, ORACLE, AS/400, MICROSOFT, JAVA, Tecnologías móviles, Javascript y Aseguramiento de Calidad.
+                                </p>
+                                <br />
+                                <a href="#" className="rounded-2xl bg-red-600 px-3.5 py-2.5 font-semibold text-white shadow-sm hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                    Mas sobre nosotros
+                                </a>
+                                <br />
+                                <br />
+                            </div>
+                            <div className='w-6/12 mx-auto'>
+                                <img src="https://cdn3d.iconscout.com/3d/premium/thumb/people-discussion-about-business-8659916-6909666.png" alt="" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            {/* portafolio */}
+            {/* <div className="mx-auto w-full mt-48">
+                <div className="text-center" data-aos="fade-up">
+                    <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+                        Conoce mas sobre nosotros!
+                    </h1>
+                    <div className="bg-white dark:bg-zinc-900 text-white border dark:border-black rounded-lg shadow-lg w-4/5 mx-auto my-12 px-4" data-aos="fade-up">
+                        <div className='h-[600px] w-full content-center'>
+                            <PDFViewer />
+                        </div>
+                    </div>
+                </div>
+            </div> */}
+
+
 
 
             {/* formulario hubspot */}
-            <div className="bg-white dark:bg-zinc-900 text-white border dark:border-black p-4 rounded-lg shadow-lg sm:w-4/5	mx-auto my-24" data-aos="fade-up">
-                <div className="flex items-center">
-                    <div className="rounded-full bg-red-500 w-3 h-3 mr-2"></div>
-                    <div className="rounded-full bg-yellow-500 w-3 h-3 mr-2"></div>
-                    <div className="rounded-full bg-green-500 w-3 h-3 mr-2"></div>
-                </div>
-                <div className="mt-6 rounded">
-                    <HubSpotForm />
+            <div className="mx-auto w-full mt-48">
+                <div className="text-center" data-aos="fade-up">
+                    <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+                        Contactanos!
+                    </h1>
+                    <div className="bg-white dark:bg-zinc-900 text-white border dark:border-black rounded-lg shadow-lg w-4/5 mx-auto my-12 px-4" data-aos="fade-up">
+                        <div className='my-8'>
+                            <HubSpotForm />
+                        </div>
+                    </div>
                 </div>
             </div>
 
