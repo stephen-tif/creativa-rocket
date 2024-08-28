@@ -155,7 +155,7 @@ const Home = () => {
 
             {/* sobre nosotros */}
             <div className="mx-auto w-full relative mt-48">
-                <div className="text-white rounded-lg shadow-lg w-4/5 mx-auto my-12 px-4 bg-[url('./src/assets/tarjeta-blanco.svg')] dark:bg-[url('./src/assets/tarjeta-negro.svg')] bg-cover bg-center" data-aos="fade-up">
+                <div className="text-white rounded-lg shadow-lg w-4/5 mx-auto my-12 px-4 bg-[url('/imagenes/tarjeta-blanco.svg')] dark:bg-[url('/imagenes/tarjeta-negro.svg')] bg-cover bg-center" data-aos="fade-up">
                     <div className='w-full content-center'>
 
                         <div className="flex flex-col md:flex-row justify-between items-center p-6">
@@ -188,7 +188,7 @@ const Home = () => {
 
             {/* Sección Universidad */}
             <div className="mx-auto w-full relative mt-48">
-                <div className="text-white rounded-lg shadow-lg w-4/5 mx-auto my-12 px-4 bg-[url('./src/assets/tarjeta-blanco.svg')] dark:bg-[url('./src/assets/tarjeta-negro.svg')] bg-cover bg-center" data-aos="fade-up">
+                <div className="text-white rounded-lg shadow-lg w-4/5 mx-auto my-12 px-4 bg-[url('/imagenes/tarjeta-blanco.svg')] dark:bg-[url('/imagenes/tarjeta-negro.svg')] bg-cover bg-center" data-aos="fade-up">
                     <div className="w-full content-center">
                         <div className="flex flex-col md:flex-row justify-between items-center p-6">
                             <div className="w-6/12 mx-auto">
@@ -218,7 +218,7 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="absolute w-full z-0">
-                    <div className="absolute w-full h-screen dark:opacity-90 bg-[url('./src/assets/fondo-blob.svg')] bg-cover bg-center blur-2xl"></div>
+                    <div className="absolute w-full h-screen dark:opacity-90 bg-[url('/imagenes/fondo-blob.svg')] bg-cover bg-center blur-2xl"></div>
                     <div className="w-full h-screen blur-sm dark:opacity-80">
                         <Canvas camera={{ position: [15, -8, 0], fov: 8 }} shadows onCreated={() => handleCanvasLoaded()}>
                             <ambientLight intensity={0.03} />

@@ -66,7 +66,7 @@ const PDFViewer = () => {
             {/* Visor de PDF */}
             <div className='h-5/6'>
                 <Viewer
-                    fileUrl="./src/assets/Portafolio.pdf"
+                    fileUrl="/imagenes/Portafolio.pdf"
                     plugins={[
                         toolbarPluginInstance,
                         fullScreenPluginInstance,
