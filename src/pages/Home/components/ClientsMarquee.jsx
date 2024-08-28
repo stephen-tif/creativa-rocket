@@ -3,7 +3,7 @@ import Marquee from "react-fast-marquee";
 
 
 const ClientsMarquee = () => (
-    <div className="w-full bg-white dark:bg-black">
+    <div className="w-full">
       <Marquee pauseOnHover={true}>
         <img src="https://creativastudios.us/assets/images/nuestros-clientes/iconos/cliente-01.webp" alt="" className='grayscale mx-2'/>
         <img src="https://creativastudios.us/assets/images/nuestros-clientes/iconos/cliente-02.webp" alt="" className='grayscale mx-2'/>

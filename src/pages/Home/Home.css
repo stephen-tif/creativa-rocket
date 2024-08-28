@@ -1,1 +1,25 @@
+.rocket-bounce {
+  animation: bounce 3s infinite;
+}
 
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+    animation-timing-function: ease-in;
+  }
+
+  50% {
+    transform: translateY(-20px);
+    animation-timing-function: ease-out;
+  }
+}
+
+
+.text-neon {
+  color: white;
+  /* Color de texto principal */
+  text-shadow: 0 0 5px rgb(82, 3, 3), 0 0 10px rgb(82, 3, 3), 0 0 20px rgb(82, 3, 3)
+    
+}
