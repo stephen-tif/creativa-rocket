@@ -212,29 +212,46 @@ const Home = () => {
             </div>
 
             <div className='relative flex justify-start grid content-center w-full h-screen'>
-                <div className="rounded w-full sm:w-8/12 z-10" data-aos="fade-up">
-                    <div className="text-4xl tracking-tight sm:text-6xl text-neon text-center sm:text-left m-0 sm:ml-5">
-                        ¡Somos la empresa más CREATIVA! ☝️&#128526;
+                <div className="rounded w-4/5 lg:w-8/12 mx-auto lg:ml-5 z-10" data-aos="fade-up">
+                    <div className="text-6xl tracking-tight text-neon text-center">
+                        ¡Somos la empresa más CREATIVA! &#128526;
                     </div>
                 </div>
-                <div className="absolute w-full z-0">
-                    <div className="absolute w-full h-screen dark:opacity-90 bg-[url('/imagenes/fondo-blob.svg')] bg-cover bg-center blur-2xl"></div>
-                    <div className="w-full h-screen blur-sm dark:opacity-80">
-                        <Canvas camera={{ position: [15, -8, 0], fov: 8 }} shadows onCreated={() => handleCanvasLoaded()}>
-                            <ambientLight intensity={0.03} />
-                            <directionalLight
-                                position={[8, 8, 3]}
-                                castShadow
-                                shadow-mapSize-width={1024}
-                                shadow-mapSize-height={1024}
+                <div className='z-10 mt-5 w-full lg:w-8/12'>
+                    <img
+                        className="w-2/5 mx-auto"
+                        src="https://creativastudios.us/assets/images/footer/premio_clutch.webp"
+                        alt="clutch" />
+                </div>
+                {window.innerWidth > 1024 ? (
+                    <div className="absolute w-full z-0">
+                        <div className="absolute w-full h-screen dark:opacity-90 bg-[url('/imagenes/fondo-blob.svg')] bg-cover bg-center blur-2xl"></div>
+                        <div className="w-full h-screen blur-sm dark:opacity-80">
+                            <Canvas camera={{ position: [15, -8, 0], fov: 8 }} shadows onCreated={() => handleCanvasLoaded()}>
+                                <ambientLight intensity={0.03} />
+                                <directionalLight
+                                    position={[8, 8, 3]}
+                                    castShadow
+                                    shadow-mapSize-width={1024}
+                                    shadow-mapSize-height={1024}
+                                />
+                                <group position={[0, 0, -0.3]} rotation={[1, rocketRotation, 0]}>
+                                    <Rocket />
+                                </group>
+                                <OrbitControls enableZoom={false} enableRotate={false} />
+                            </Canvas>
+                        </div>
+                    </div>
+                ) :
+                    <>
+                        {/* fondo rojo */}
+                        <div className="absolute isolate blur-2xl">
+                            <div className="absolute left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] dark:bg-gradient-to-tr dark:from-[#ff0000] dark:to-[red] opacity-100 left-[calc(50%-30rem)] w-[72.1875rem]"
+                                style={{ clipPath: 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)', }}
                             />
-                            <group position={[0, 0, -0.3]} rotation={[1, rocketRotation, 0]}>
-                                <Rocket />
-                            </group>
-                            <OrbitControls enableZoom={false} enableRotate={false} />
-                        </Canvas>
-                    </div>
-                </div>
+                        </div>
+                    </>
+                }
             </div>
 
 
