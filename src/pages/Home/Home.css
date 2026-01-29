@@ -1,65 +1,13 @@
 /* Home page specific styles */
 /* Most styles are now handled by Tailwind and App.css */
 
-/* Rocket floating animation */
-.rocket-bounce {
-  animation: rocketFloat 4s ease-in-out infinite;
-  will-change: transform;
-}
-
-@keyframes rocketFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-}
-
-/* Interactive Grid Pattern */
-.grid-pattern {
+/* Scientific Blueprint Grid - Static, no animations for performance */
+.scientific-grid {
   background-image: 
-    linear-gradient(rgba(225, 35, 39, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(225, 35, 39, 0.1) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(rgba(225, 35, 39, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(225, 35, 39, 0.15) 1px, transparent 1px),
+    linear-gradient(rgba(225, 35, 39, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(225, 35, 39, 0.08) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
   background-position: center center;
-  animation: gridPulse 3s ease-in-out infinite;
-}
-
-@keyframes gridPulse {
-  0%, 100% {
-    opacity: 0.2;
-  }
-  50% {
-    opacity: 0.4;
-  }
-}
-
-/* Scanning line effect */
-.grid-pattern::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(225, 35, 39, 0.5), transparent);
-  animation: scanLine 4s linear infinite;
-}
-
-@keyframes scanLine {
-  0% {
-    top: 0;
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    top: 100%;
-    opacity: 0;
-  }
 }

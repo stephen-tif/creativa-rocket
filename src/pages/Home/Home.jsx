@@ -72,52 +72,111 @@ const HeroSection = memo(function HeroSection({ onCanvasLoaded }) {
                                         </div>
                     </div>
 
-                    {/* 3D Rocket with Interactive Grid */}
-                    <div className="relative h-[400px] lg:h-[600px] rocket-bounce">
-                        {/* Interactive Grid Background */}
-                        <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
-                            <div className="absolute inset-0 grid-pattern opacity-30" />
-                            {/* Corner markers */}
-                            <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-[#e12327]/40" />
-                            <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-[#e12327]/40" />
-                            <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-[#e12327]/40" />
-                            <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-[#e12327]/40" />
-                            {/* Interactive hint */}
-                            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 text-xs text-muted-foreground bg-background/60 backdrop-blur-sm px-3 py-1.5 rounded-full border border-border/50">
-                                <svg className="w-4 h-4 animate-pulse text-[#e12327]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
-                                </svg>
-                                <span>Arrastra para rotar</span>
+                    {/* 3D Rocket - Scientific Display */}
+                    <div className="relative h-[400px] lg:h-[600px]">
+                        {/* Scientific Frame */}
+                        <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl border border-border/30 bg-gradient-to-b from-secondary/20 to-transparent">
+                            {/* Blueprint grid - subtle and static */}
+                            <div className="absolute inset-0 scientific-grid opacity-[0.08]" />
+                            
+                            {/* Corner brackets */}
+                            <svg className="absolute top-3 left-3 w-6 h-6 text-[#e12327]/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                                <path d="M4 8V4h4M4 4v0" />
+                            </svg>
+                            <svg className="absolute top-3 right-3 w-6 h-6 text-[#e12327]/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                                <path d="M20 8V4h-4" />
+                            </svg>
+                            <svg className="absolute bottom-3 left-3 w-6 h-6 text-[#e12327]/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                                <path d="M4 16v4h4" />
+                            </svg>
+                            <svg className="absolute bottom-3 right-3 w-6 h-6 text-[#e12327]/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                                <path d="M20 16v4h-4" />
+                            </svg>
+                            
+                            {/* Top label */}
+                            <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-3">
+                                <div className="h-px w-8 bg-border/50" />
+                                <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70 font-medium">Modelo 3D Interactivo</span>
+                                <div className="h-px w-8 bg-border/50" />
+                            </div>
+                            
+                            {/* Side indicators */}
+                            <div className="absolute left-4 top-1/2 -translate-y-1/2 flex flex-col gap-1">
+                                <div className="w-1 h-1 rounded-full bg-[#e12327]/40" />
+                                <div className="w-1 h-6 rounded-full bg-border/30" />
+                                <div className="w-1 h-1 rounded-full bg-[#e12327]/40" />
+                            </div>
+                            <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-1">
+                                <div className="w-1 h-1 rounded-full bg-[#e12327]/40" />
+                                <div className="w-1 h-6 rounded-full bg-border/30" />
+                                <div className="w-1 h-1 rounded-full bg-[#e12327]/40" />
+                            </div>
+                            
+                            {/* Bottom data panel */}
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-4 text-[10px] text-muted-foreground/60 font-mono">
+                                <span className="flex items-center gap-1.5">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-green-500/60" />
+                                    READY
+                                </span>
+                                <span className="text-border/50">|</span>
+                                <span>360° VIEW</span>
+                                <span className="text-border/50">|</span>
+                                <span className="flex items-center gap-1.5">
+                                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" />
+                                    </svg>
+                                    DRAG
+                                </span>
                             </div>
                         </div>
+                        
+                        {/* 3D Canvas */}
                         <Canvas 
                             camera={{ position: [15, 4, 0], fov: 8 }} 
                             shadows 
                             onCreated={onCanvasLoaded}
-                            dpr={[1, 2]}
+                            dpr={[1, 1.5]}
                             performance={{ min: 0.5 }}
                             style={{ cursor: 'grab' }}
+                            gl={{ 
+                                antialias: true,
+                                alpha: true,
+                                powerPreference: 'high-performance'
+                            }}
                         >
-                            <ambientLight intensity={0.15} />
+                            {/* Improved lighting for better shadows */}
+                            <ambientLight intensity={0.2} />
                             <directionalLight
-                                position={[8, 8, 3]}
-                                intensity={1}
+                                position={[10, 10, 5]}
+                                intensity={1.2}
                                 castShadow
-                                shadow-mapSize-width={512}
-                                shadow-mapSize-height={512}
+                                shadow-mapSize-width={1024}
+                                shadow-mapSize-height={1024}
+                                shadow-camera-far={50}
+                                shadow-camera-near={0.1}
+                                shadow-bias={-0.0001}
                             />
+                            <directionalLight
+                                position={[-5, 5, -5]}
+                                intensity={0.3}
+                            />
+                            <pointLight position={[0, -5, 0]} intensity={0.1} color="#e12327" />
+                            
                             <group position={[0, -0.2, 0]}>
                                 <Rocket />
                             </group>
+                            
                             <OrbitControls 
                                 enableZoom={false} 
                                 enableRotate={true}
                                 enablePan={false}
                                 autoRotate={true}
-                                autoRotateSpeed={0.5}
-                                rotateSpeed={0.5}
+                                autoRotateSpeed={0.3}
+                                rotateSpeed={0.4}
                                 minPolarAngle={Math.PI / 3}
                                 maxPolarAngle={Math.PI / 1.8}
+                                enableDamping={true}
+                                dampingFactor={0.05}
                             />
                         </Canvas>
                     </div>
