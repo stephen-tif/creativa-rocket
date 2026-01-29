@@ -71,7 +71,7 @@ const Footer = memo(function Footer() {
                                 <a
                                     key={social.name}
                                     href={social.href}
-                                    className="text-muted-foreground hover:text-foreground transition-colors"
+                                    className="text-muted-foreground hover:text-[#e12327] transition-colors"
                                     aria-label={social.name}
                                 >
                                     {social.icon}
@@ -90,7 +90,7 @@ const Footer = memo(function Footer() {
                                 <li key={link.name}>
                                     <a 
                                         href={link.href}
-                                        className="text-muted-foreground hover:text-foreground transition-colors"
+                                        className="text-muted-foreground hover:text-[#e12327] transition-colors"
                                     >
                                         {link.name}
                                     </a>

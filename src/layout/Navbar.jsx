@@ -81,7 +81,7 @@ const Navbar = memo(function Navbar() {
                             className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group"
                         >
                             {item.name}
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-foreground transition-all duration-300 group-hover:w-full" />
+                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#e12327] transition-all duration-300 group-hover:w-full" />
                         </a>
                     ))}
                 </div>
@@ -102,7 +102,7 @@ const Navbar = memo(function Navbar() {
                             </svg>
                         )}
                     </button>
-                    <a href="#contacto" className="btn-primary">
+                    <a href="#contacto" className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium rounded-full transition-all duration-300 bg-[#e12327] text-white hover:bg-[#c91f22]">
                         Contactar
                     </a>
                 </div>

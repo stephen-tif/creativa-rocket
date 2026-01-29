@@ -28,10 +28,10 @@ const HeroSection = memo(function HeroSection({ rocketRotation, onCanvasLoaded }
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     {/* Content */}
                     <div className="max-w-2xl fade-in-up">
-                        <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary text-sm text-muted-foreground mb-6">
-                            <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-                            Soluciones tecnologicas innovadoras
-                        </span>
+<span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e12327]/10 text-sm text-[#e12327] mb-6 border border-[#e12327]/20">
+                                            <span className="w-2 h-2 bg-[#e12327] rounded-full animate-pulse" />
+                                            Soluciones tecnologicas innovadoras
+                                        </span>
                         
                         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-tight text-balance">
                             Transformamos ideas en 
@@ -44,8 +44,8 @@ const HeroSection = memo(function HeroSection({ rocketRotation, onCanvasLoaded }
                         </p>
                         
                         <div className="mt-10 flex flex-wrap items-center gap-4">
-                            <a href="#servicios" className="btn-primary">
-                                Explorar servicios
+<a href="#servicios" className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium rounded-full transition-all duration-300 bg-[#e12327] text-white hover:bg-[#c91f22]">
+                                                Explorar servicios
                                 <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                 </svg>
@@ -55,21 +55,21 @@ const HeroSection = memo(function HeroSection({ rocketRotation, onCanvasLoaded }
                             </a>
                         </div>
 
-                        {/* Stats */}
-                        <div className="mt-16 grid grid-cols-3 gap-8">
-                            <div>
-                                <div className="text-3xl font-bold text-foreground">20+</div>
-                                <div className="text-sm text-muted-foreground">Anos de experiencia</div>
-                            </div>
-                            <div>
-                                <div className="text-3xl font-bold text-foreground">200+</div>
-                                <div className="text-sm text-muted-foreground">Colaboradores</div>
-                            </div>
-                            <div>
-                                <div className="text-3xl font-bold text-foreground">500+</div>
-                                <div className="text-sm text-muted-foreground">Proyectos</div>
-                            </div>
-                        </div>
+{/* Stats */}
+                                        <div className="mt-16 grid grid-cols-3 gap-8">
+                                            <div>
+                                                <div className="text-3xl font-bold text-[#e12327]">20+</div>
+                                                <div className="text-sm text-muted-foreground">Anos de experiencia</div>
+                                            </div>
+                                            <div>
+                                                <div className="text-3xl font-bold text-[#e12327]">200+</div>
+                                                <div className="text-sm text-muted-foreground">Colaboradores</div>
+                                            </div>
+                                            <div>
+                                                <div className="text-3xl font-bold text-[#e12327]">500+</div>
+                                                <div className="text-sm text-muted-foreground">Proyectos</div>
+                                            </div>
+                                        </div>
                     </div>
 
                     {/* 3D Rocket */}
@@ -192,9 +192,9 @@ const ServicesSection = memo(function ServicesSection() {
                             className="modern-card hover-lift group"
                             style={{ animationDelay: `${index * 0.1}s` }}
                         >
-                            <div className="w-12 h-12 rounded-xl bg-foreground/5 flex items-center justify-center text-foreground mb-4 group-hover:bg-foreground group-hover:text-background transition-colors duration-300">
-                                {service.icon}
-                            </div>
+<div className="w-12 h-12 rounded-xl bg-[#e12327]/10 flex items-center justify-center text-[#e12327] mb-4 group-hover:bg-[#e12327] group-hover:text-white transition-colors duration-300">
+                                                {service.icon}
+                                            </div>
                             <h3 className="text-lg font-semibold text-foreground mb-2">
                                 {service.title}
                             </h3>
@@ -246,12 +246,12 @@ const AboutSection = memo(function AboutSection() {
                             ))}
                         </div>
 
-                        <a href="#contacto" className="btn-primary mt-8 inline-flex">
-                            Conocer mas
-                            <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </a>
+<a href="#contacto" className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium rounded-full transition-all duration-300 bg-[#e12327] text-white hover:bg-[#c91f22] mt-8">
+                                            Conocer mas
+                                            <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                            </svg>
+                                        </a>
                     </div>
 
                     <div className="relative">
@@ -263,8 +263,8 @@ const AboutSection = memo(function AboutSection() {
                                 loading="lazy"
                             />
                         </div>
-                        {/* Decorative element */}
-                        <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-foreground rounded-2xl -z-10" />
+{/* Decorative element */}
+                                        <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-[#e12327] rounded-2xl -z-10" />
                     </div>
                 </div>
             </div>
@@ -304,7 +304,7 @@ const UniversitySection = memo(function UniversitySection() {
                         <ul className="mt-8 space-y-4">
                             {['Certificaciones internacionales', 'Cursos especializados', 'Mentoria personalizada', 'Proyectos reales'].map((item) => (
                                 <li key={item} className="flex items-center gap-3 text-background/80">
-                                    <svg className="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                                    <svg className="w-5 h-5 text-[#e12327]" fill="currentColor" viewBox="0 0 20 20">
                                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                     </svg>
                                     {item}
