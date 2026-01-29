@@ -144,23 +144,55 @@ const HeroSection = memo(function HeroSection({ onCanvasLoaded }) {
                                 powerPreference: 'high-performance'
                             }}
                         >
-                            {/* Improved lighting for better shadows */}
-                            <ambientLight intensity={0.2} />
+                            {/* Enhanced lighting system for depth and shadow detail */}
+                            <ambientLight intensity={0.25} />
+                            
+                            {/* Main directional light - Primary shadows */}
                             <directionalLight
-                                position={[10, 10, 5]}
-                                intensity={1.2}
+                                position={[12, 12, 8]}
+                                intensity={1.4}
                                 castShadow
-                                shadow-mapSize-width={1024}
-                                shadow-mapSize-height={1024}
-                                shadow-camera-far={50}
-                                shadow-camera-near={0.1}
-                                shadow-bias={-0.0001}
+                                shadow-mapSize-width={2048}
+                                shadow-mapSize-height={2048}
+                                shadow-camera-left={-60}
+                                shadow-camera-right={60}
+                                shadow-camera-top={60}
+                                shadow-camera-bottom={-60}
+                                shadow-camera-far={80}
+                                shadow-camera-near={0.5}
+                                shadow-bias={-0.0008}
+                                shadow-radius={3}
                             />
+                            
+                            {/* Fill light - Softens shadows */}
                             <directionalLight
-                                position={[-5, 5, -5]}
-                                intensity={0.3}
+                                position={[-8, 6, -10]}
+                                intensity={0.5}
                             />
-                            <pointLight position={[0, -5, 0]} intensity={0.1} color="#e12327" />
+                            
+                            {/* Back light - Rim lighting for depth */}
+                            <directionalLight
+                                position={[0, 8, -15]}
+                                intensity={0.4}
+                            />
+                            
+                            {/* Red accent light - Brand color reflection */}
+                            <pointLight 
+                                position={[8, 2, 8]} 
+                                intensity={0.3} 
+                                color="#e12327"
+                                distance={30}
+                            />
+                            
+                            {/* Shadow receiving plane */}
+                            <mesh 
+                                position={[0, -60, 0]} 
+                                rotation={[-Math.PI / 2, 0, 0]}
+                                receiveShadow
+                            >
+                                <planeGeometry args={[200, 200]} />
+                                <shadowMaterial opacity={0.3} />
+                            </mesh>
                             
                             <group position={[0, -0.2, 0]}>
                                 <Rocket />

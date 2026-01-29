@@ -11,53 +11,73 @@ const Rocket = memo(function Rocket(props) {
   
   // Memoize the geometry groups to prevent unnecessary re-renders
   const rocketMeshes = useMemo(() => (
-    <group scale={0.01}>
-      <group rotation={[-Math.PI / 2, 0, 0]} scale={100}>
+    <group scale={0.01} castShadow receiveShadow>
+      <group rotation={[-Math.PI / 2, 0, 0]} scale={100} castShadow receiveShadow>
         <mesh
           geometry={nodes.Cylinder_white_0.geometry}
           material={materials.white}
+          castShadow
+          receiveShadow
         />
         <mesh
           geometry={nodes.Cylinder_red_0.geometry}
           material={materials.material}
+          castShadow
+          receiveShadow
         />
         <mesh
           geometry={nodes.Cylinder_metal_0.geometry}
           material={materials.metal}
+          castShadow
+          receiveShadow
         />
       </group>
       <group
         position={[20.443, 20.34, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={100}
+        castShadow
+        receiveShadow
       >
         <mesh
           geometry={nodes.Cylinder001_metal_0.geometry}
           material={materials.metal}
+          castShadow
+          receiveShadow
         />
         <mesh
           geometry={nodes.Cylinder001_window_glass_0.geometry}
           material={materials.window_glass}
+          castShadow
+          receiveShadow
         />
       </group>
       <group
         position={[0, -41.747, 0.146]}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={100}
+        castShadow
+        receiveShadow
       >
         <mesh
           geometry={nodes.Cylinder008_metal_0.geometry}
           material={materials.metal}
+          castShadow
+          receiveShadow
         />
         <mesh
           geometry={nodes.Cylinder008_metal_0_1.geometry}
           material={materials.metal}
+          castShadow
+          receiveShadow
         />
       </group>
       <group
         position={[0.159, -52.228, 8.568]}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={9.636}
+        castShadow
+        receiveShadow
       >
         <mesh
           geometry={nodes.Cube002_whiteSmoke_0.geometry}
@@ -92,6 +112,8 @@ const Rocket = memo(function Rocket(props) {
         position={[0.219, -51.549, -7.501]}
         rotation={[-Math.PI / 2, 0, 2.009]}
         scale={8.725}
+        castShadow
+        receiveShadow
       >
         <mesh
           geometry={nodes.Cube015_whiteSmoke_0.geometry}
@@ -127,12 +149,16 @@ const Rocket = memo(function Rocket(props) {
         material={materials["metal.2"]}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={100}
+        castShadow
+        receiveShadow
       />
       <mesh
         geometry={nodes.Cylinder003_red_0.geometry}
         material={materials.material}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={98.354}
+        castShadow
+        receiveShadow
       />
       <mesh
         geometry={nodes.Cube001_metal2_0.geometry}
@@ -140,6 +166,8 @@ const Rocket = memo(function Rocket(props) {
         position={[28.921, 21.844, 0]}
         rotation={[-Math.PI / 2, -0.175, 0]}
         scale={100}
+        castShadow
+        receiveShadow
       />
       <mesh
         geometry={nodes.Cube005_whiteSmoke_0.geometry}
