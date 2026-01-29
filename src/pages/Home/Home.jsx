@@ -1,6 +1,6 @@
 import { useState, memo, useCallback } from 'react';
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, GridHelper } from "@react-three/drei";
 import Navbar from '../../layout/Navbar';
 import Footer from '../../layout/Footer';
 import Rocket from "../../components/Rocket";
@@ -93,11 +93,19 @@ const HeroSection = memo(function HeroSection({ onCanvasLoaded }) {
                                 <path d="M20 16v4h-4" />
                             </svg>
                             
-                            {/* Top label */}
+                            {/* Top label with drag hint */}
                             <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-3">
                                 <div className="h-px w-8 bg-border/50" />
                                 <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/70 font-medium">Modelo 3D Interactivo</span>
                                 <div className="h-px w-8 bg-border/50" />
+                            </div>
+                            
+                            {/* Top drag indicator */}
+                            <div className="absolute top-12 right-6 flex items-center gap-2 text-[10px] text-muted-foreground/70 font-medium uppercase tracking-widest opacity-75 hover:opacity-100 transition-opacity">
+                                <svg className="w-3 h-3 text-[#e12327]/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" />
+                                </svg>
+                                <span>ARRASTRA PARA ROTAR</span>
                             </div>
                             
                             {/* Side indicators */}
@@ -138,30 +146,51 @@ const HeroSection = memo(function HeroSection({ onCanvasLoaded }) {
                             dpr={[1, 2]}
                             performance={{ min: 0.5 }}
                             style={{ cursor: 'grab' }}
-                            gl={{ antialias: true, alpha: true }}
+                            gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true }}
                         >
-                            <ambientLight intensity={0.25} color="#ffffff" />
+                            {/* Optimized lighting setup with dark tech background */}
+                            <color attach="background" args={['#0f0f0f']} />
+                            <ambientLight intensity={0.3} color="#ffffff" />
+                            
+                            {/* Main directional light with optimized shadows */}
                             <directionalLight
                                 position={[12, 10, 8]}
-                                intensity={1.2}
+                                intensity={1}
                                 castShadow
-                                shadow-mapSize-width={1024}
-                                shadow-mapSize-height={1024}
+                                shadow-mapSize-width={2048}
+                                shadow-mapSize-height={2048}
                                 shadow-camera-near={0.1}
                                 shadow-camera-far={100}
                                 shadow-camera-left={-50}
                                 shadow-camera-right={50}
                                 shadow-camera-top={50}
                                 shadow-camera-bottom={-50}
-                                shadow-bias={-0.0001}
+                                shadow-bias={-0.0005}
+                                shadow-radius={8}
                             />
-                            <pointLight position={[-10, 5, -10]} intensity={0.3} color="#e12327" />
+                            
+                            {/* Accent fill lights with red tint */}
+                            <pointLight position={[-10, 5, -10]} intensity={0.4} color="#e12327" distance={50} decay={2} />
                             <directionalLight
                                 position={[-5, 5, -5]}
-                                intensity={0.3}
+                                intensity={0.2}
                             />
-                            <pointLight position={[0, -5, 0]} intensity={0.1} color="#e12327" />
                             
+                            {/* Reference plane grid */}
+                            <mesh position={[0, -2.5, 0]} receiveShadow>
+                                <planeGeometry args={[80, 80]} />
+                                <meshStandardMaterial 
+                                    color="#1a1a1a"
+                                    metalness={0.1}
+                                    roughness={0.8}
+                                    envMapIntensity={0.2}
+                                />
+                            </mesh>
+                            
+                            {/* Grid helper lines for reference */}
+                            <GridHelper args={[80, 16, '#e12327', '#333333']} position={[0, -2.48, 0]} />
+                            
+                            {/* Rocket model */}
                             <group position={[0, -0.2, 0]}>
                                 <Rocket />
                             </group>
@@ -171,12 +200,13 @@ const HeroSection = memo(function HeroSection({ onCanvasLoaded }) {
                                 enableRotate={true}
                                 enablePan={false}
                                 autoRotate={true}
-                                autoRotateSpeed={0.3}
-                                rotateSpeed={0.8}
-                                minPolarAngle={Math.PI / 2.8}
-                                maxPolarAngle={Math.PI / 1.5}
-                                dampingFactor={0.08}
+                                autoRotateSpeed={0.15}
+                                rotateSpeed={0.7}
+                                minPolarAngle={Math.PI / 3}
+                                maxPolarAngle={Math.PI / 1.8}
+                                dampingFactor={0.1}
                                 enableDamping={true}
+                                autoRotateOnInteraction={true}
                             />
                         </Canvas>
                     </div>

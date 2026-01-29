@@ -11,7 +11,7 @@ const Rocket = memo(function Rocket(props) {
   
   // Memoize the geometry groups to prevent unnecessary re-renders
   const rocketMeshes = useMemo(() => (
-    <group scale={0.01} castShadow receiveShadow>
+    <group scale={0.01} castShadow receiveShadow shadowMap-type={1}>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={100}>
         <mesh
           geometry={nodes.Cylinder_white_0.geometry}
