@@ -131,31 +131,31 @@ const HeroSection = memo(function HeroSection({ onCanvasLoaded }) {
                         </div>
                         
                         {/* 3D Canvas */}
-                        <Canvas 
+<Canvas 
                             camera={{ position: [15, 4, 0], fov: 8 }} 
                             shadows 
                             onCreated={onCanvasLoaded}
-                            dpr={[1, 1.5]}
+                            dpr={[1, 2]}
                             performance={{ min: 0.5 }}
                             style={{ cursor: 'grab' }}
-                            gl={{ 
-                                antialias: true,
-                                alpha: true,
-                                powerPreference: 'high-performance'
-                            }}
+                            gl={{ antialias: true, alpha: true }}
                         >
-                            {/* Improved lighting for better shadows */}
-                            <ambientLight intensity={0.2} />
+                            <ambientLight intensity={0.25} color="#ffffff" />
                             <directionalLight
-                                position={[10, 10, 5]}
+                                position={[12, 10, 8]}
                                 intensity={1.2}
                                 castShadow
                                 shadow-mapSize-width={1024}
                                 shadow-mapSize-height={1024}
-                                shadow-camera-far={50}
                                 shadow-camera-near={0.1}
+                                shadow-camera-far={100}
+                                shadow-camera-left={-50}
+                                shadow-camera-right={50}
+                                shadow-camera-top={50}
+                                shadow-camera-bottom={-50}
                                 shadow-bias={-0.0001}
                             />
+                            <pointLight position={[-10, 5, -10]} intensity={0.3} color="#e12327" />
                             <directionalLight
                                 position={[-5, 5, -5]}
                                 intensity={0.3}
@@ -172,11 +172,11 @@ const HeroSection = memo(function HeroSection({ onCanvasLoaded }) {
                                 enablePan={false}
                                 autoRotate={true}
                                 autoRotateSpeed={0.3}
-                                rotateSpeed={0.4}
-                                minPolarAngle={Math.PI / 3}
-                                maxPolarAngle={Math.PI / 1.8}
+                                rotateSpeed={0.8}
+                                minPolarAngle={Math.PI / 2.8}
+                                maxPolarAngle={Math.PI / 1.5}
+                                dampingFactor={0.08}
                                 enableDamping={true}
-                                dampingFactor={0.05}
                             />
                         </Canvas>
                     </div>

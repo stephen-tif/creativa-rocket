@@ -11,19 +11,25 @@ const Rocket = memo(function Rocket(props) {
   
   // Memoize the geometry groups to prevent unnecessary re-renders
   const rocketMeshes = useMemo(() => (
-    <group scale={0.01}>
+    <group scale={0.01} castShadow receiveShadow>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={100}>
         <mesh
           geometry={nodes.Cylinder_white_0.geometry}
           material={materials.white}
+          castShadow
+          receiveShadow
         />
         <mesh
           geometry={nodes.Cylinder_red_0.geometry}
           material={materials.material}
+          castShadow
+          receiveShadow
         />
         <mesh
           geometry={nodes.Cylinder_metal_0.geometry}
           material={materials.metal}
+          castShadow
+          receiveShadow
         />
       </group>
       <group
@@ -34,10 +40,14 @@ const Rocket = memo(function Rocket(props) {
         <mesh
           geometry={nodes.Cylinder001_metal_0.geometry}
           material={materials.metal}
+          castShadow
+          receiveShadow
         />
         <mesh
           geometry={nodes.Cylinder001_window_glass_0.geometry}
           material={materials.window_glass}
+          castShadow
+          receiveShadow
         />
       </group>
       <group
