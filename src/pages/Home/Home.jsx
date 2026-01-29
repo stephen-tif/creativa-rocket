@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, lazy, Suspense, memo, useCallback } from 'react';
+import { useState, memo, useCallback } from 'react';
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import Navbar from '../../layout/Navbar';
@@ -9,7 +9,7 @@ import HubSpotForm from './components/HubSpotForm';
 import Preloader from '../../components/Preloader/Preloader';
 
 // Memoized Hero Section with Rocket
-const HeroSection = memo(function HeroSection({ rocketRotation, onCanvasLoaded }) {
+const HeroSection = memo(function HeroSection({ onCanvasLoaded }) {
     return (
         <section id="inicio" className="relative min-h-screen flex items-center overflow-hidden">
             {/* Background gradient */}
@@ -72,14 +72,31 @@ const HeroSection = memo(function HeroSection({ rocketRotation, onCanvasLoaded }
                                         </div>
                     </div>
 
-                    {/* 3D Rocket */}
+                    {/* 3D Rocket with Interactive Grid */}
                     <div className="relative h-[400px] lg:h-[600px] rocket-bounce">
+                        {/* Interactive Grid Background */}
+                        <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
+                            <div className="absolute inset-0 grid-pattern opacity-30" />
+                            {/* Corner markers */}
+                            <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-[#e12327]/40" />
+                            <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-[#e12327]/40" />
+                            <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-[#e12327]/40" />
+                            <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-[#e12327]/40" />
+                            {/* Interactive hint */}
+                            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 text-xs text-muted-foreground bg-background/60 backdrop-blur-sm px-3 py-1.5 rounded-full border border-border/50">
+                                <svg className="w-4 h-4 animate-pulse text-[#e12327]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                                </svg>
+                                <span>Arrastra para rotar</span>
+                            </div>
+                        </div>
                         <Canvas 
                             camera={{ position: [15, 4, 0], fov: 8 }} 
                             shadows 
                             onCreated={onCanvasLoaded}
                             dpr={[1, 2]}
                             performance={{ min: 0.5 }}
+                            style={{ cursor: 'grab' }}
                         >
                             <ambientLight intensity={0.15} />
                             <directionalLight
@@ -89,13 +106,18 @@ const HeroSection = memo(function HeroSection({ rocketRotation, onCanvasLoaded }
                                 shadow-mapSize-width={512}
                                 shadow-mapSize-height={512}
                             />
-                            <group position={[0, -0.2, 0]} rotation={[0, rocketRotation, 0]}>
+                            <group position={[0, -0.2, 0]}>
                                 <Rocket />
                             </group>
                             <OrbitControls 
                                 enableZoom={false} 
-                                enableRotate={false}
+                                enableRotate={true}
                                 enablePan={false}
+                                autoRotate={true}
+                                autoRotateSpeed={0.5}
+                                rotateSpeed={0.5}
+                                minPolarAngle={Math.PI / 3}
+                                maxPolarAngle={Math.PI / 1.8}
                             />
                         </Canvas>
                     </div>
@@ -404,36 +426,11 @@ const ContactSection = memo(function ContactSection() {
 
 // Main Home Component
 const Home = () => {
-    const [rocketRotation, setRocketRotation] = useState(0);
     const [loading, setLoading] = useState(true);
-    const animationRef = useRef(null);
 
     const handleCanvasLoaded = useCallback(() => {
         // Small delay to ensure smooth transition
         setTimeout(() => setLoading(false), 500);
-    }, []);
-
-    useEffect(() => {
-        // Optimized animation loop
-        let lastTime = 0;
-        const animate = (time) => {
-            if (time - lastTime > 16) { // ~60fps cap
-                setRocketRotation((prev) => prev + 0.003);
-                lastTime = time;
-            }
-            animationRef.current = requestAnimationFrame(animate);
-        };
-
-        // Only animate on larger screens
-        if (window.innerWidth > 640) {
-            animationRef.current = requestAnimationFrame(animate);
-        }
-
-        return () => {
-            if (animationRef.current) {
-                cancelAnimationFrame(animationRef.current);
-            }
-        };
     }, []);
 
     return (
@@ -444,7 +441,6 @@ const Home = () => {
             
             <main>
                 <HeroSection 
-                    rocketRotation={rocketRotation} 
                     onCanvasLoaded={handleCanvasLoaded}
                 />
                 <ServicesSection />
