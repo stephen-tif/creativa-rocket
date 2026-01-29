@@ -5,7 +5,6 @@ import Navbar from '../../layout/Navbar';
 import Footer from '../../layout/Footer';
 import Rocket from "../../components/Rocket";
 import ClientsMarquee from './components/ClientsMarquee';
-import ServicesCard from './components/ServicesCard';
 import HubSpotForm from './components/HubSpotForm';
 import Preloader from '../../components/Preloader/Preloader';
 
