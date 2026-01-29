@@ -1,7 +1,6 @@
 import { useState, memo, useCallback } from 'react';
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import { GridHelper } from "three";
 import Navbar from '../../layout/Navbar';
 import Footer from '../../layout/Footer';
 import Rocket from "../../components/Rocket";
@@ -187,9 +186,6 @@ const HeroSection = memo(function HeroSection({ onCanvasLoaded }) {
                                     envMapIntensity={0.2}
                                 />
                             </mesh>
-                            
-                            {/* Grid helper lines for reference using primitive */}
-                            <primitive object={new GridHelper(80, 16, '#e12327', '#333333')} position={[0, -2.48, 0]} />
                             
                             {/* Rocket model */}
                             <group position={[0, -0.2, 0]}>
